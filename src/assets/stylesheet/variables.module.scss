@@ -1,0 +1,91 @@
+/* ----------------------------------------
+  Color
+---------------------------------------- */
+
+$link: #4f3cc9;
+
+$white: #ffffff;
+$black: #000000;
+
+$darkBlack: #001529;
+$darkWhite: rgba(255, 255, 255, 0.65);
+$background: #f0f2f5;
+$primary: #0275d8;
+$blue: #0088CC;
+$mainblue: #4eb8dd;
+
+$red: #ff5450;
+$pink: #e08f95;
+
+$orange: #f5803e;
+$yellow: #fbbb22;
+$green: #72c279;
+
+$turquoise: #36beb3;
+
+$orange1: #fff7e6;
+$orange2: #ffe7ba;
+
+$gold6: #fadb14;
+
+$blue1: #e6f7ff;
+$blue2: #bae7ff;
+$blue3: #91d5ff;
+$blue4: #69c0ff;
+$blue5: #40a9ff;
+$blue6: #1890ff;
+$blue7: #096dd9;
+$blue8: #0050b3;
+$blue9: #003a8c;
+
+$gray1: #F2F2F2;
+$gray2: #DFDFDF;
+$gray3: #CCCCCC;
+$gray4: #A6A6A6;
+$gray5: #808080;
+$gray6: #737373;
+$gray7: #4D4D4D;
+$gray8: #3A3A3A;
+$gray9: #262626;
+
+/* ----------------------------------------
+  Breakpoints
+---------------------------------------- */
+
+$breakpointPhoneSmall: 320px;
+$breakpointPhone: 400px;
+$breakpointPhoneWide: 480px;
+$breakpointPhablet: 560px;
+$breakpointTabletSmall: 640px;
+$breakpointTablet: 790px;
+$breakpointTabletWide: 1060px;
+$breakpointDesktop: 1260px;
+$breakpointDesktopWide: 1460px;
+
+
+/* ----------------------------------------
+  Font-Family
+---------------------------------------- */
+@import url(https://fonts.googleapis.com/css2?family=Geologica:wght@600&family=Lexend+Peta&display=swap);
+
+$ff-title:'Geologica',
+'Microsoft Yahei',
+sans-serif;
+
+$ff-text:'Geologica',
+'PingFang',
+sans-serif;
+
+
+
+@keyframes moveIn {
+  0% {
+    transform: translateY(-25px);
+    height: 20%;
+  }
+
+  100% {
+    height: 100%;
+    transform: translateY(0);
+  }
+}

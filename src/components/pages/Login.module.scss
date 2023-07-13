@@ -1,0 +1,87 @@
+@import '/src/assets/stylesheet/main.module.scss';
+
+
+@keyframes flip-in-hor-bottom {
+  0% {
+    -webkit-transform: rotateX(80deg);
+    transform: rotateX(80deg);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+    opacity: 1;
+  }
+}
+
+
+
+.section {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: moveIn 0.5s;
+  background-color: #eff3f4;
+}
+
+.title {
+  display: flex;
+  gap: 20px;
+  cursor: pointer;
+  color: $black;
+
+  &:hover {
+    color: $mainblue;
+  }
+}
+
+.active {
+  color: $mainblue;
+}
+
+.login {
+  width: 400px;
+  padding: 48px 12px;
+  border: 1px #ddd solid;
+  border-radius: 4px;
+  background: $white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: flip-in-hor-bottom 0.5s both;
+  border-radius: 6px;
+  align-items: center;
+
+  .alert {
+    width: 180px;
+    margin: 0 auto;
+  }
+
+  .block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin: 0 auto;
+
+    .title {
+      font-size: 14px;
+      font-family: $ff-title;
+    }
+  }
+
+
+  input {
+    @extend %input;
+    padding: 11px 7px;
+  }
+
+  button {
+    border-radius: none;
+    width: 178.5px;
+  }
+}

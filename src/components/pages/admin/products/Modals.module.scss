@@ -1,0 +1,91 @@
+@import '/src/assets/stylesheet/main.module.scss';
+
+.modalWrapper {
+  @extend %modal;
+
+  .top {
+    @include flex(space-between, center);
+    @include size(600px, auto);
+  }
+
+  .mid {
+    @include size(600px, auto);
+    max-width: calc(100vw - 20px);
+    display: flex;
+    gap: 8px;
+
+    label {
+      @extend %checkbox;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+
+  .btm {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.modalWrapper2 {
+  @extend %modal;
+
+  .mid {
+    @include size(300px, auto);
+    font-family: $ff-text;
+    text-align: center;
+    line-height: 26px;
+  }
+
+  .btm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 25px;
+  }
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
+
+  .title,
+  .input {
+    display: flex;
+    width: 100%;
+
+    input {
+      @extend %input;
+      padding: 8px 12px;
+      width: 99%;
+    }
+  }
+}
+
+.blockGrp {
+  display: flex;
+  gap: 16px;
+
+  .block {
+    .input {
+      input {
+        width: 267px;
+      }
+    }
+  }
+}
+
+:global {
+  .ant-upload-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ant-upload-list-item {
+    margin: 0 !important;
+  }
+}

@@ -1,0 +1,347 @@
+@import '/src/assets/stylesheet/main.module.scss';
+
+@keyframes moveIn {
+  0% {
+    transform: translateX(-50px);
+  }
+
+  50% {
+    transform: translateX(-25px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes sideIn {
+  0% {
+    transform: translateY(-50px);
+  }
+
+  50% {
+    transform: translateY(-25px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+body {
+  margin: 0;
+  @extend %scrollbar;
+  overflow: auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  ;
+  width: 100%;
+  height: 100%;
+
+  .sidebar {
+    height: auto;
+    width: 280px;
+    background-color: #001528;
+    display: flex;
+    flex-direction: column;
+
+    .trigger {
+      display: none;
+    }
+
+    .mbNav {
+      display: none;
+    }
+
+    .header {
+      height: 64px;
+      display: flex;
+      justify-content: center;
+      background-color: #002341;
+
+      h3 {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        color: $white;
+        font-family: $ff-text;
+        letter-spacing: 1px;
+      }
+    }
+
+    ul {
+      width: 280px;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+
+      li {
+        width: 100%;
+        color: $gray4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 16px;
+        gap: 8px;
+      }
+
+      a {
+        color: $white;
+        text-decoration: none;
+
+        svg {
+          font-size: 24px;
+        }
+      }
+
+      li:hover {
+        color: $white;
+      }
+    }
+
+    .sidefot {
+      display: flex;
+      color: $white;
+    }
+  }
+
+  .content {
+    @extend %scrollbar;
+    width: calc(100% - 280px);
+    height: 100%;
+    overflow: auto;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 30px;
+      height: 64px;
+      width: 100%;
+      box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.08);
+      background-color: $white;
+
+
+      .breadcrumb {
+        display: flex;
+        align-items: center;
+      }
+
+      .member {
+        display: flex;
+        gap: 8px;
+
+        img {
+          border-radius: 50%;
+          border: 1px solid #ccc;
+        }
+      }
+    }
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+
+    .sidebar {
+      display: flex;
+      height: 64px;
+      width: 100%;
+      background-color: #001528;
+      z-index: 1;
+
+      .header {
+        display: none;
+      }
+
+      .trigger {
+        left: 0px;
+        display: flex;
+        padding: 16px 24px;
+        color: $white;
+        font-size: 32px;
+        justify-content: flex-start;
+
+        svg {
+          color: $gray4;
+          padding: 2px 6px;
+          border: 1px solid $gray4;
+          border-radius: 2px;
+        }
+      }
+
+      .mbNav {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        height: 100%;
+        position: fixed;
+        z-index: 1;
+        width: 50%;
+        top: 0;
+        left: 0;
+        background-color: rgba(#001528, 0.95);
+        animation: moveIn 0.2s;
+        padding-top: 60px;
+        padding-left: 64px;
+
+        span {
+          display: inline-flex;
+          gap: 8px;
+          align-items: center;
+          font-size: 14px;
+          color: $gray3;
+          text-decoration: none;
+          width: fit-content;
+          height: fit-content;
+
+          svg {
+            font-size: 20px;
+          }
+        }
+
+        span:hover {
+          color: $white;
+        }
+
+        .navClose {
+          position: absolute;
+          width: fit-content;
+          height: fit-content;
+          right: 32px;
+          top: 32px;
+          font-size: 24px;
+        }
+      }
+
+      ul {
+        display: none;
+      }
+    }
+
+    .content {
+      position: relative;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+
+    .sidebar {
+      display: flex;
+      height: 64px;
+      width: 100%;
+      background-color: #001528;
+
+      .header {
+        display: none;
+      }
+
+      .trigger {
+        left: 0px;
+        display: flex;
+        padding: 16px 24px;
+        color: $white;
+        font-size: 32px;
+        justify-content: flex-start;
+
+        svg {
+          color: $gray4;
+          padding: 2px 6px;
+          border: 1px solid $gray4;
+          border-radius: 2px;
+        }
+      }
+
+      .mbNav {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        height: 100%;
+        position: fixed;
+        z-index: 1;
+        width: 100%;
+        height: 30%;
+        top: 64px;
+        left: 0;
+        background-color: rgba(#001528, 0.95);
+        animation: sideIn 0.2s;
+        padding-top: 15px;
+        padding-left: 30px;
+
+        span {
+          display: inline-flex;
+          gap: 8px;
+          align-items: center;
+          font-size: 14px;
+          color: $gray3;
+          text-decoration: none;
+          width: fit-content;
+          height: fit-content;
+
+          svg {
+            font-size: 20px;
+          }
+        }
+
+        span:hover {
+          color: $white;
+        }
+
+        .navClose {
+          position: absolute;
+          width: fit-content;
+          height: fit-content;
+          right: 32px;
+          top: 32px;
+          font-size: 24px;
+        }
+      }
+
+      ul {
+        display: none;
+      }
+    }
+
+    .content {
+      width: 100%;
+      margin: 0 auto;
+
+      .header {
+        .breadcrumb {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 180px) {
+  .container {
+
+    .sidebar {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,90 @@
+@import '/src/assets/stylesheet/main.module.scss';
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.modalWrapper {
+  @extend %modal;
+
+  &::before {
+    animation: fadeIn 0.2s ease-out forwards;
+  }
+
+  .top {
+    @include flex(space-between, center);
+    @include size(600px, auto);
+    animation: moveIn 0.5s;
+    padding: 0 50px;
+  }
+
+  .mid {
+    @include size(600px, auto);
+    max-width: calc(100vw - 20px);
+    padding: 20px 50px 50px 50px;
+    margin: 0;
+    display: flex;
+    gap: 30px;
+    font-family: $ff-text;
+    animation: moveIn 0.5s;
+
+    .grp {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    label {
+      @extend %checkbox;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+
+  .btm {
+    display: flex;
+    align-items: center;
+    animation: moveIn 0.5s;
+  }
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+
+  .title,
+  .input {
+    display: flex;
+    width: 100%;
+
+    input {
+      @extend %input;
+      padding: 8px 12px;
+      width: 100%;
+    }
+  }
+}
+
+.blockGrp {
+  display: flex;
+  gap: 10px;
+
+  .block {
+    .input {
+      display: flex;
+
+      #qty {
+        width: 100px;
+      }
+    }
+  }
+}

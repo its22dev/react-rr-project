@@ -1,0 +1,34 @@
+@import 'extend.module';
+@import 'variables.module';
+@import 'mixin.module.scss';
+
+
+
+:global {
+
+  .ant-btn,
+  .ant-select,
+  .ant-input,
+  .ant-picker,
+  .ant-pagination-item,
+  .ant-table-container,
+  .ant-alert,
+  .ant-select-selector {
+    border-radius: 0 !important;
+  }
+
+  .ant-picker {
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .ant-alert-message {
+    font-family: $ff-text;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

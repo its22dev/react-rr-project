@@ -1,0 +1,109 @@
+@import 'variables.module';
+
+/* ----------------------------------------
+  Element Size
+---------------------------------------- */
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+/* ----------------------------------------
+  Element Flexbox
+---------------------------------------- */
+
+@mixin flex($justify-content, $align-items) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+
+/* ----------------------------------------
+  Box Shadow
+---------------------------------------- */
+
+@mixin boxShadow {
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .06);
+}
+
+/* ----------------------------------------
+  Card Layout
+---------------------------------------- */
+
+@mixin card {
+  box-shadow:
+    rgba(65, 69, 88, 0.1) 0px 7px 14px 0px,
+    rgba(0, 0, 0, 0.07) 0px 3px 6px 0px !important;
+}
+
+/* ----------------------------------------
+  Number Layout
+---------------------------------------- */
+
+@mixin number($width, $height: $width) {
+  @include flex(center, center);
+  width: $width;
+  height: $height;
+  color: $white;
+  background-color: rgb(16, 142, 233);
+  border-radius: 100%;
+}
+
+
+/* ----------------------------------------
+  Media Query Breakpoint
+---------------------------------------- */
+
+$breakpoints: ("phoneSmall": $breakpointPhoneSmall,
+  "phone": $breakpointPhone,
+  "phoneWide": $breakpointPhoneWide,
+  "phablet": $breakpointPhablet,
+  "tabletSmall": $breakpointTabletSmall,
+  "tablet": $breakpointTablet,
+  "tabletWide": $breakpointTabletWide,
+  "desktop": $breakpointDesktop,
+  "desktopWide": $breakpointDesktopWide);
+
+@mixin breakpoint($width, $type: max) {
+  @if map-has-key($breakpoints, $width) {
+    $width: map-get($breakpoints, $width);
+  }
+
+  @if $type==max {
+    $width: $width - 1px;
+  }
+
+  @media only screen and (#{$type}-width: $width) {
+    @content;
+  }
+}
+
+/* ----------------------------------------
+  Scrollbar Layout
+---------------------------------------- */
+
+@mixin scrollbar($type) {
+  @if $type=='width' {
+    &::-webkit-scrollbar {
+      @include size(100%, 6px);
+    }
+  }
+
+  @else {
+    &::-webkit-scrollbar {
+      @include size(6px, 100%);
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $white;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-color: $gray5;
+    opacity: 0;
+  }
+}
