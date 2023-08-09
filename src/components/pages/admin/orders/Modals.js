@@ -5,9 +5,13 @@ import { CheckOutlined, CloseOutlined, ZoomInOutlined } from "@ant-design/icons"
 import axios from "axios";
 import styles from "./Modals.module.scss";
 import Details from "./Details";
+// message
+import { useContext } from "react";
+import { MessageContext, handleSuccessMessage, handleErrorMessage } from "../../../../store/messageStore";
 
 
 const Modals = ({ mode, setModalShow, trgtOrder, setTrgtOrder, getOrders }) => {
+  const [message, dispatch] = useContext(MessageContext)
   const [PaidDate, setPaidDate] = useState();
   const [CreatedDate, setCreatedDate] = useState(Number(trgtOrder.create_at))
   const [finalTotals, setFinalTotals] = useState(Object.values(trgtOrder.products).map(item => item.final_total))
@@ -38,38 +42,35 @@ const Modals = ({ mode, setModalShow, trgtOrder, setTrgtOrder, getOrders }) => {
       `/v2/api/${process.env.REACT_APP_API_PATH_TEST}/admin/order/${id}`,
       { data: tempData }
     )
-      .then(() => {
+      .then((res) => {
+        handleSuccessMessage(dispatch, res);
         getOrders()
         setModalShow(false)
       })
       .catch((err) => {
-        console.log(err.response.data)
-        getOrders()
-        setModalShow(false)
+        handleErrorMessage(dispatch, err)
       })
   }
   const onDelete = async (id) => {
     if (mode === 'del') {
       await axios.delete(`/v2/api/${process.env.REACT_APP_API_PATH_TEST}/admin/order/${id}`)
-        .then(() => {
+        .then((res) => {
+          handleSuccessMessage(dispatch, res);
           getOrders()
           setModalShow(false)
         })
         .catch((err) => {
-          console.log(err.response.data)
-          getOrders()
-          setModalShow(false)
+          handleErrorMessage(dispatch, err)
         })
     } else {
       await axios.delete(`/v2/api/${process.env.REACT_APP_API_PATH_TEST}/admin/orders/all`)
-        .then(() => {
+        .then((res) => {
+          handleSuccessMessage(dispatch, res);
           getOrders()
           setModalShow(false)
         })
         .catch((err) => {
-          console.log(err.response.data)
-          getOrders()
-          setModalShow(false)
+          handleErrorMessage(dispatch, err)
         })
     }
   }

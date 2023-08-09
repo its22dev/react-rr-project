@@ -1,0 +1,129 @@
+@import '/src/assets/stylesheet/main.module.scss';
+
+body {
+  margin: 0;
+  @extend %scrollbar;
+  overflow: auto;
+}
+
+.container {
+  padding: 0 10rem;
+
+  .header {
+    background-color: $white;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 3rem 10rem;
+
+    .topnav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        list-style: none;
+        gap: 1rem;
+
+        a {
+          color: $gray6;
+          font-family: $ff-text;
+          font-size: 15px;
+          text-decoration: none;
+
+          svg {
+            font-size: 20px;
+          }
+        }
+
+        a:hover {
+          color: $mainblue;
+        }
+
+      }
+
+      .trigger {
+        display: none;
+      }
+
+      .title {
+        a {
+          color: $gray6;
+          font-size: 1.2rem;
+        }
+
+        a:hover {
+          color: $mainblue;
+        }
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 8rem;
+  }
+
+  .footer {
+    margin: 7rem 0;
+    padding-top: 3rem;
+    border-top: 1px solid #f1f1f1;
+    display: flex;
+    justify-content: space-between;
+
+    .block {
+      color: $gray4;
+      font-size: 12px;
+      font-family: $ff-text;
+      text-transform: uppercase;
+
+
+      ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 0.5rem;
+        list-style: none;
+
+        a {
+          color: $gray6;
+          font-size: 14px;
+          letter-spacing: 1px;
+          text-decoration: none;
+        }
+
+        a:hover {
+          color: $mainblue;
+        }
+      }
+    }
+  }
+
+}
+
+
+@media only screen and (max-width: 768px) {
+  .container {
+    position: relative;
+  }
+}
+
+@media (max-width: 420px) {
+  .container {
+    position: relative;
+  }
+}
+
+@media (max-width: 180px) {
+  .container {
+    position: relative;
+  }
+}

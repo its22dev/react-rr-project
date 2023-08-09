@@ -3,29 +3,33 @@ import { RiCloseLine } from "react-icons/ri";
 import { UploadOutlined } from "@ant-design/icons";
 import axios from "axios";
 import styles from "./Modals.module.scss";
+// message
+import { useContext } from "react";
+import { MessageContext, handleSuccessMessage, handleErrorMessage } from "../../../../store/messageStore";
 
 
 const Modals = ({ mode, setModalShow, trgtPrdct, setTrgtPrdct, getProducts }) => {
+  const [message, dispatch] = useContext(MessageContext)
   const onSave = async (id) => {
     if (mode === 'create') {
       await axios.post(`/v2/api/${process.env.REACT_APP_API_PATH_TEST}/admin/product`, { data: trgtPrdct })
-        .then(() => {
+        .then((res) => {
+          handleSuccessMessage(dispatch, res);
           getProducts()
           setModalShow(false)
         })
         .catch((err) => {
-          console.log(err.response.data)
-          getProducts()
-          setModalShow(false)
+          handleErrorMessage(dispatch, err)
         })
     } else {
       await axios.put(`/v2/api/${process.env.REACT_APP_API_PATH_TEST}/admin/product/${id}`, { data: trgtPrdct })
-        .then(() => {
+        .then((res) => {
+          handleSuccessMessage(dispatch, res);
           getProducts();
           setModalShow(false)
         })
         .catch((err) => {
-          console.log(err.response.data)
+          handleErrorMessage(dispatch, err)
           getProducts()
           setModalShow(false)
         })
@@ -201,3 +205,4 @@ const Block = ({ id, title, defaultValue, onChange }) => {
 
 
 export default Modals;
+

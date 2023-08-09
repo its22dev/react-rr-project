@@ -4,7 +4,6 @@ import { UploadOutlined } from "@ant-design/icons";
 import axios from "axios";
 import styles from "./Modals.module.scss";
 
-
 const Modals = ({ mode, setModalShow, trgtArticle, setTrgtArticle, getArticles }) => {
   const onDelete = async (id) => {
     await axios.delete(`/v2/api/${process.env.REACT_APP_API_PATH_TEST}/admin/product/${id}1`)
@@ -41,24 +40,5 @@ const Modals = ({ mode, setModalShow, trgtArticle, setTrgtArticle, getArticles }
     </div>
   )
 }
-
-const Block = ({ id, title, defaultValue, onChange }) => {
-  return (
-    <div className={styles.block}>
-      <div className={styles.title}>
-        <label htmlFor={id}>{title}</label>
-      </div>
-      <div className={styles.input}>
-        <input
-          id={id}
-          name={id}
-          defaultValue={defaultValue}
-          onChange={onChange}
-          type={id === 'original_price' || id === 'price' ? 'number' : 'text'} />
-      </div>
-    </div>
-  )
-}
-
 
 export default Modals;

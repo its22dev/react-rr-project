@@ -4,9 +4,12 @@ import { RiCloseLine } from "react-icons/ri";
 import { UploadOutlined } from "@ant-design/icons";
 import axios from "axios";
 import styles from "./Modals.module.scss";
-
+// message
+import { useContext } from "react";
+import { MessageContext, handleSuccessMessage, handleErrorMessage } from "../../../../store/messageStore";
 
 const Modals = ({ mode, setModalShow, trgtCpn, setTrgtCpn, getCoupons }) => {
+  const [message, dispatch] = useContext(MessageContext)
   const [date, setDate] = useState(new Date());
 
   const onSave = async (id) => {
@@ -15,41 +18,38 @@ const Modals = ({ mode, setModalShow, trgtCpn, setTrgtCpn, getCoupons }) => {
         `/v2/api/${process.env.REACT_APP_API_PATH_TEST}/admin/coupon`,
         { data: { ...trgtCpn, ['due_date']: date.getTime() } }
       )
-        .then(() => {
+        .then((res) => {
+          handleSuccessMessage(dispatch, res);
           getCoupons()
           setModalShow(false)
         })
         .catch((err) => {
-          console.log(err.response.data)
-          getCoupons()
-          setModalShow(false)
+          handleErrorMessage(dispatch, err)
         })
     } else {
       await axios.put(
         `/v2/api/${process.env.REACT_APP_API_PATH_TEST}/admin/coupon/${id}`,
         { data: { ...trgtCpn, ['due_date']: date.getTime() } }
       )
-        .then(() => {
+        .then((res) => {
+          handleSuccessMessage(dispatch, res);
           getCoupons()
           setModalShow(false)
         })
         .catch((err) => {
-          console.log(err.response.data)
-          getCoupons()
-          setModalShow(false)
+          handleErrorMessage(dispatch, err)
         })
     }
   }
   const onDelete = async (id) => {
     await axios.delete(`/v2/api/${process.env.REACT_APP_API_PATH_TEST}/admin/coupon/${id}`)
-      .then(() => {
+      .then((res) => {
+        handleSuccessMessage(dispatch, res);
         getCoupons()
         setModalShow(false)
       })
       .catch((err) => {
-        console.log(err.response.data)
-        getCoupons()
-        setModalShow(false)
+        handleErrorMessage(dispatch, err)
       })
   }
   const onChange = e => {

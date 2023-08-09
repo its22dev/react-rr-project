@@ -18,14 +18,11 @@
 
 
 .section {
-  width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   animation: moveIn 0.5s;
-  background-color: #eff3f4;
 }
 
 .title {
