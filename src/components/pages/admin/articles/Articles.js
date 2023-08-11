@@ -10,6 +10,10 @@ import styles from "./Articles.module.scss";
 const Articles = () => {
   const columns = [
     {
+      title: '#',
+      dataIndex: 'id',
+    },
+    {
       title: '文章',
       dataIndex: 'title',
     },
@@ -38,7 +42,7 @@ const Articles = () => {
       title: '操作',
       render: (_, record) => {
         return <div className={styles.btnGrp}>
-          <Button onClick={() => navigate(`../articles/${record.id}`)} type='link'>查看</Button>
+          <Button onClick={() => handleOpenNewWindow(record.id)} type='link'>查看</Button>
           <Button onClick={() => navigate(`./${record.id}`)} type='link'>編輯</Button>
           <Button onClick={() => Deleting(record)} type='link'>刪除</Button>
         </div>
@@ -46,11 +50,15 @@ const Articles = () => {
 
     },
   ]
-  const [modalShow, setModalShow] = useState(false);
-  const [articles, setArticles] = useState([]);
-  const [pagination, setPagination] = useState({});
-  const [trgtArticle, setTrgtArticle] = useState({});
-  const navigate = useNavigate();
+  const [modalShow, setModalShow] = useState(false)
+  const [articles, setArticles] = useState([])
+  const [pagination, setPagination] = useState({})
+  const [trgtArticle, setTrgtArticle] = useState({})
+  const navigate = useNavigate()
+  const handleOpenNewWindow = (recordId) => {
+    const newWindow = window.open(`./#/articles/${recordId}`, "_blank")
+    if (newWindow) newWindow.opener = null
+  };
 
   // action
   const getArticles = async (page = 1) => {

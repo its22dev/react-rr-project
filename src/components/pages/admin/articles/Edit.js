@@ -14,7 +14,8 @@ const Edit = () => {
   const getTarget = async () => {
     const res = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH_TEST}/admin/article/${urlparams.id}`)
     setTempData(res.data.article)
-    setTags(res.data.article.tag)
+    if (res.data.article.tag) setTags(res.data.article.tag)
+    else setTags([])
   }
   const onChange = e => {
     const { id, value } = e.target

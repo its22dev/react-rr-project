@@ -44,6 +44,7 @@ const Products = () => {
       render: (_, record) => {
 
         return <div className={styles.btnGrp}>
+          <Button onClick={() => handleOpenNewWindow(record.id)} type='primary'>查看</Button>
           <Button onClick={() => Editing(record)}>編輯</Button>
           <Button onClick={() => Deleting(record)} type='primary' danger>刪除</Button>
         </div>
@@ -56,7 +57,10 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [pagination, setPagination] = useState({});
   const [trgtPrdct, setTrgtPrdct] = useState({});
-
+  const handleOpenNewWindow = (recordId) => {
+    const newWindow = window.open(`./#/products/${recordId}`, "_blank")
+    if (newWindow) newWindow.opener = null
+  };
   const getProducts = async (page = 1) => {
     const res = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH_TEST}/admin/products?page=${page}`)
     setProducts(res.data.products);
