@@ -18,7 +18,6 @@ const List = () => {
     setPagination(res.data.pagination);
   }
 
-
   useEffect(() => {
     getProducts();
   }, [])
@@ -29,9 +28,10 @@ const List = () => {
         return (
           <div className={styles.item} key={prdct.id}>
             <div className={styles.itemContainer}>
-              <img src={prdct.imageUrl} width={300} />
+              <img alt={prdct.title} src={prdct.imageUrl} width={300} />
             </div>
             <div className={styles.title}><span>{prdct.title}</span></div>
+            <div className={styles.price}><span>{prdct.category}</span></div>
             <div className={styles.price}><span>${prdct.price}</span></div>
             <div className={styles.link}>
               <div className={styles.cart}>

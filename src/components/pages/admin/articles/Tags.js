@@ -28,10 +28,10 @@ const Tags = ({ tags, setTags }) => {
     setInputVisible(false)
   }
   // just for test
-  // console.log(tags)
+  console.log(tags)
 
   return (<>
-    {tags.map((tag, index) =>
+    {tags && tags.map((tag, index) =>
       <Tag closable onClose={e => onClose(index)} key={tag}>{tag}</Tag>
     )}
     {inputVisible

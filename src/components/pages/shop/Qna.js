@@ -1,5 +1,5 @@
 
-import styles from './List.module.scss';
+import styles from './Page.module.scss';
 
 const Qna = () => {
 

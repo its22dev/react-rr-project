@@ -6,7 +6,7 @@ import styles from "./Modals.module.scss";
 
 const Modals = ({ mode, setModalShow, trgtArticle, setTrgtArticle, getArticles }) => {
   const onDelete = async (id) => {
-    await axios.delete(`/v2/api/${process.env.REACT_APP_API_PATH_TEST}/admin/product/${id}1`)
+    await axios.delete(`/v2/api/${process.env.REACT_APP_API_PATH_TEST}/admin/article/${id}`)
       .then(() => {
         getArticles()
         setModalShow(false)
