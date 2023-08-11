@@ -1,18 +1,68 @@
 @import '/src/assets/stylesheet/main.module.scss';
 
-.news {
-  width: 100%;
-  padding: 1rem 3rem;
-}
-
-.ftr {
+.article {
   display: flex;
-  flex-direction: row;
-  margin: 10px 0;
-  height: 100%;
-  justify-content: center;
-}
+  flex-direction: column;
 
-img {
-  object-fit: cover;
+  .header {
+    width: 100%;
+    font-family: $ff-text;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+
+    h1 {
+      margin: 1rem 0 .5rem 0;
+    }
+
+    .info {
+      margin: .5rem 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      p {
+        margin: 0;
+        font-size: 14px;
+        color: $mainblue;
+      }
+
+      .item,
+      .item a {
+        font-size: 14px;
+        display: flex;
+        column-gap: 8px;
+        align-items: center;
+      }
+
+      .item a {
+        color: $gray4;
+      }
+
+      .item a:hover {
+        color: $mainblue;
+      }
+
+      .details {
+        display: flex;
+        flex-direction: row;
+        column-gap: 1.5rem;
+      }
+    }
+  }
+
+  .content {
+    color: $gray8;
+    margin: 1rem 0;
+    font-size: 1rem;
+    font-family: $ff-text;
+
+    p {
+      line-height: 2;
+    }
+  }
+
+  .footer {}
 }

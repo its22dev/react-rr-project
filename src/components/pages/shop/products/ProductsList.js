@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Pagination } from "antd";
 
 import { ShoppingOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import axios from "axios";
-import styles from './List.module.scss';
+import styles from './ProductsList.module.scss';
 
-const List = () => {
+const ProductsList = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [pagination, setPagination] = useState({});
@@ -28,7 +28,9 @@ const List = () => {
         return (
           <div className={styles.item} key={prdct.id}>
             <div className={styles.itemContainer}>
-              <img alt={prdct.title} src={prdct.imageUrl} width={300} />
+              <Link to={prdct.id}>
+                <img alt={prdct.title} src={prdct.imageUrl} width={300} />
+              </Link>
             </div>
             <div className={styles.title}><span>{prdct.title}</span></div>
             <div className={styles.price}><span>{prdct.category}</span></div>
@@ -56,4 +58,4 @@ const List = () => {
   )
 }
 
-export default List
+export default ProductsList

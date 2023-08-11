@@ -5,6 +5,7 @@ import { Button, InputNumber } from "antd";
 
 import axios from "axios";
 import styles from './Product.module.scss';
+import noImg from '../../../../assets/image/noimg.png';
 import { AiOutlineRight, AiOutlineDown } from "react-icons/ai";
 import { HiMinusSm, HiPlusSm } from "react-icons/hi";
 
@@ -38,6 +39,8 @@ const Product = () => {
     fetch();
   }, [id])
 
+  console.log(product);
+
 
   return (
     <div className={styles.prdctContent}>
@@ -53,10 +56,10 @@ const Product = () => {
                   return <div className={styles.singleImg}>
                     <img
                       alt={product.title}
-                      src={img}
+                      src={img !== '' ? img : noImg}
                       width={96}
                       height={96}
-                      onClick={() => setMainPic(img)} />
+                      onClick={() => setMainPic(img !== '' ? img : noImg)} />
                   </div>
                 })}
               </div>

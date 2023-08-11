@@ -13,8 +13,9 @@ import Edit from './components/pages/admin/articles/Edit';
 // shop
 import Shops from './components/pages/shop/Shops';
 import About from './components/pages/shop/About';
-import List from './components/pages/shop/products/List';
+import ProductsList from './components/pages/shop/products/ProductsList';
 import Product from './components/pages/shop/products/Product';
+import NewsList from './components/pages/shop/news/NewsList';
 import News from './components/pages/shop/news/News';
 import Qna from './components/pages/shop/Qna';
 
@@ -34,9 +35,9 @@ const App = () => {
       <Route path='/' element={<Shops />}>
         <Route path='/login' element={<Login />} />
         <Route path='/about' element={<About />} />
-        <Route path='/products' element={<List />} />
+        <Route path='/products' element={<ProductsList />} />
         <Route path='/products/:id' element={<Product />} />
-        <Route path='/articles' element={<News />} />
+        <Route path='/articles' element={<NewsList />} />
         <Route path='/articles/:id' element={<News />} />
         <Route path='/qna' element={<Qna />} />
       </Route>
