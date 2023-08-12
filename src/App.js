@@ -14,6 +14,7 @@ import Edit from './components/pages/admin/articles/Edit';
 
 // shop
 import Shops from './components/pages/shop/Shops';
+import Home from './components/pages/shop/Home';
 // carts
 import Carts from './components/pages/shop/carts/Carts';
 // checkout
@@ -43,6 +44,7 @@ const App = () => {
         <Route path='articles/:id' element={<Edit />} />
       </Route>
       <Route path='/' element={<Shops />}>
+        <Route index element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/carts' element={<Carts />} />
         <Route path='/checkout' element={<Checkout />} />

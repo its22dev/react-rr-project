@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { Input } from '../../../elements/FormElements';
 import { Cart } from '../../../elements/Cart'
+import { Loading } from '../../../elements/Loading'
 import { Button } from 'antd';
 import { SwapLeftOutlined } from '@ant-design/icons';
 
@@ -12,6 +14,7 @@ const Checkout = () => {
   const { cartData } = useOutletContext()
   const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
   const onSubmit = async (data) => {
     const { email, name, tel, address, message } = data
     const tempData = {
@@ -24,8 +27,10 @@ const Checkout = () => {
       message: message,
     }
     try {
+      setIsLoading(true)
       const res = await axios.post(`/v2/api/${process.env.REACT_APP_API_PATH_TEST}/order`, { data: tempData })
       navigate(`../success/${res.data.orderId}`)
+      setIsLoading(false)
     } catch (error) {
       console.log(error);
     }
@@ -33,6 +38,7 @@ const Checkout = () => {
 
   return (
     <div className={styles.checkout}>
+      <Loading isLoading={isLoading} />
       <div className={styles.info}>
         <h2>訂購資訊</h2>
         <form className={styles.content} onSubmit={handleSubmit(onSubmit)}>

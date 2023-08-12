@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, Link, Outlet } from "react-router-dom";
-import { Badge } from 'antd';
+import { Badge, FloatButton } from 'antd';
 import { AiOutlineShoppingCart, AiOutlineMenu } from "react-icons/ai";
 import axios from 'axios';
 import styles from './Shops.module.scss';
@@ -76,6 +76,9 @@ const Shops = () => {
             )}
           </ul>
         </div>
+        <FloatButton.BackTop
+          visibilityHeight={100}
+        />
       </footer>
     </div >
   )

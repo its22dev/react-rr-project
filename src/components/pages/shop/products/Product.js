@@ -19,8 +19,9 @@ const Product = () => {
   // carts
   const [qty, setQty] = useState(1)
   const [isAdding, setIsAdding] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
   const { getCart } = useOutletContext()
+  // loading
+  const [isLoading, setIsLoading] = useState(false)
 
   const fetch = async () => {
     setIsLoading(true)
