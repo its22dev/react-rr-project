@@ -1,0 +1,73 @@
+@import '/src/assets/stylesheet/main.module.scss';
+
+.carts {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+
+  .item {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid $gray2;
+    border-radius: 8px;
+
+    .info {
+      width: 55%;
+      display: flex;
+      flex-direction: row;
+      column-gap: 2rem;
+
+      .image {
+        img {
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .title {
+        color: $gray8;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-family: $ff-text;
+      }
+    }
+
+    .price,
+    .qty,
+    .total_price {
+      width: 15%;
+      color: $gray5;
+      font-family: $ff-text;
+      display: flex;
+      align-items: center;
+    }
+
+
+
+    .action {
+      width: 10%;
+      color: $gray5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1rem;
+
+      svg:hover {
+        color: $mainblue;
+      }
+    }
+  }
+
+  .ftr {
+    .info {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  h3 {
+    color: $gray6;
+    text-align: center;
+  }
+}

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { List, Space, Pagination } from 'antd';
 import { CalendarOutlined, FolderOpenOutlined, TagOutlined } from '@ant-design/icons';
-
+import { Loading } from '../../../elements/Loading';
 import axios from 'axios';
 import styles from './NewsList.module.scss';
 import noImg from '../../../../assets/image/noimg.png';
@@ -17,16 +17,19 @@ const IconText = ({ icon, text }) => (
 const NewsList = () => {
   const [articles, setArticles] = useState([])
   const [pagination, setPagination] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
 
   const getArticles = async (page = 1) => {
+    setIsLoading(true)
     const res = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH_TEST}/articles?page=${page}`)
-    console.log(res)
+    // console.log(res)
     setArticles(res.data.articles)
     setPagination(res.data.pagination)
+    setIsLoading(false)
   }
 
-  console.log(articles)
-  console.log(pagination)
+  // console.log(articles)
+  // console.log(pagination)
 
   useEffect(() => {
     getArticles();
@@ -34,6 +37,7 @@ const NewsList = () => {
 
   return (<>
     <div className={styles.news}>
+      <Loading isLoading={isLoading} />
       <List
         itemLayout='vertical'
         size='large'

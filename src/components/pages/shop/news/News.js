@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { UserOutlined, EditOutlined, CalendarOutlined, FolderOpenOutlined, TagOutlined } from '@ant-design/icons';
-
+import { Loading } from '../../../elements/Loading';
 import axios from "axios";
 import styles from './News.module.scss';
 import noImg from '../../../../assets/image/noimg.png';
@@ -9,10 +9,13 @@ import noImg from '../../../../assets/image/noimg.png';
 const News = () => {
   const { id } = useParams()
   const [article, setArticle] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
 
   const fetch = async () => {
+    setIsLoading(true)
     const res = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH_TEST}/article/${id}`)
     setArticle(res.data.article)
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -22,6 +25,7 @@ const News = () => {
 
   return (
     <div className={styles.article}>
+      <Loading isLoading={isLoading} />
       <div className={styles.header}>
         <img
           alt={article.title}

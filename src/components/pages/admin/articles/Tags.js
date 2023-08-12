@@ -28,7 +28,7 @@ const Tags = ({ tags, setTags }) => {
     setInputVisible(false)
   }
   // just for test
-  console.log(tags)
+  // console.log(tags)
 
   return (<>
     {tags && tags.map((tag, index) =>

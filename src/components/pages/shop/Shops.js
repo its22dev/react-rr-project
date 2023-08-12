@@ -1,17 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, Link, Outlet } from "react-router-dom";
 import { Badge } from 'antd';
 import { AiOutlineShoppingCart, AiOutlineMenu } from "react-icons/ai";
+import axios from 'axios';
 import styles from './Shops.module.scss';
 
 const Shops = () => {
   const navigate = useNavigate();
   const [navShow, setNavShow] = useState(false)
+  const [cartData, setCartData] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
+
+  const getCart = async () => {
+    try {
+      setIsLoading(true)
+      const res = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH_TEST}/cart`)
+      setCartData(res.data.data)
+      setIsLoading(false)
+      // console.log(res)
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const NavToggle = () => {
     if (navShow) setNavShow(false)
     else setNavShow(true)
   }
+
+  useEffect(() => {
+    getCart()
+  }, [])
+
 
   return (
     <div className={styles.container}>
@@ -34,16 +54,16 @@ const Shops = () => {
             >
               <AiOutlineMenu />
             </span>
-            <Badge count={5}>
-              <Link className={styles.navLink} to='/cart'>
+            <Link className={styles.navLink} to='/carts'>
+              <Badge count={cartData?.carts?.length}>
                 <AiOutlineShoppingCart />
-              </Link >
-            </Badge>
+              </Badge>
+            </Link >
           </ul>
         </div>
       </header>
       <div className={styles.content}>
-        <Outlet />
+        <Outlet context={{ getCart, cartData, isLoading }} />
       </div>
       <footer className={styles.footer}>
         <div className={styles.block}>

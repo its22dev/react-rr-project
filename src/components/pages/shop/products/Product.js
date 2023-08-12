@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import { Button, InputNumber } from "antd";
-
-
+import { Loading } from '../../../elements/Loading';
 import axios from "axios";
 import styles from './Product.module.scss';
 import noImg from '../../../../assets/image/noimg.png';
@@ -12,21 +11,29 @@ import { HiMinusSm, HiPlusSm } from "react-icons/hi";
 const Product = () => {
   const { id } = useParams()
   const [product, setProduct] = useState({})
+  // img
   const [mainPic, setMainPic] = useState(null)
+  // description
   const [open1, setOpen1] = useState(true)
   const [open2, setOpen2] = useState(false)
+  // carts
   const [qty, setQty] = useState(1)
+  const [isAdding, setIsAdding] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const { getCart } = useOutletContext()
 
   const fetch = async () => {
+    setIsLoading(true)
     const res = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH_TEST}/product/${id}`)
     setProduct(res.data.product);
     setMainPic(`${res.data.product.imageUrl}`)
+    setIsLoading(false)
   }
   const onClick = (type, value) => {
     switch (type) {
       case 'increase': setQty(qty + 1)
         break;
-      case 'decrease': setQty(qty - 1)
+      case 'decrease': (qty === 1) ? setQty(1) : setQty(qty - 1)
         break;
       case 'change': setQty(value)
         break;
@@ -35,15 +42,31 @@ const Product = () => {
     }
   }
 
+  const addToCart = async () => {
+    const data = { product_id: id, qty: qty }
+    setIsAdding(true)
+    try {
+      const res = await axios.post(`/v2/api/${process.env.REACT_APP_API_PATH_TEST}/cart`, { data: data })
+      // console.log(res)
+      getCart();
+      setIsAdding(false)
+    } catch (error) {
+      console.log(error)
+      setIsAdding(false)
+    }
+
+  }
+
   useEffect(() => {
-    fetch();
+    fetch()
   }, [id])
 
-  console.log(product);
+  // console.log(product)
 
 
   return (
     <div className={styles.prdctContent}>
+      <Loading isLoading={isLoading} />
       <div className={styles.left}>
         {product.imagesUrl
           ? (
@@ -84,19 +107,19 @@ const Product = () => {
           <div className={styles.tabs}>
             <div className={styles.tab}>
               <div className={styles.title}>
-                {!open1
-                  ? <span onClick={() => setOpen1(!open1)} ><AiOutlineRight />商品描述</span>
-                  : <span onClick={() => setOpen1(!open1)} ><AiOutlineDown />商品描述</span>
-                }
+                <span onClick={() => setOpen1(!open1)} >
+                  {!open1 ? <AiOutlineRight /> : <AiOutlineDown />}
+                  產品簡介
+                </span>
               </div>
               {open1 && <div className={styles.content}> {product.description} </div>}
             </div>
             <div className={styles.tab}>
               <div className={styles.title}>
-                {!open2
-                  ? <span onClick={() => setOpen2(!open2)} ><AiOutlineRight />說明內容</span>
-                  : <span onClick={() => setOpen2(!open2)} ><AiOutlineDown />說明內容</span>
-                }
+                <span onClick={() => setOpen2(!open2)} >
+                  {!open2 ? <AiOutlineRight /> : <AiOutlineDown />}
+                  說明內容
+                </span>
               </div>
               {open2 && <div className={styles.content}> {product.content} </div>}
             </div>
@@ -123,8 +146,10 @@ const Product = () => {
           </div>
           <div className={styles.cartBtn}>
             <Button
-              disabled={qty <= 0}
-              style={{ backgroundColor: '#4eb8dd', color: '#fff', width: '100%', height: '48px' }}  >
+              loading={isAdding}
+              style={{ backgroundColor: '#4eb8dd', color: '#fff', width: '100%', height: '48px' }}
+              onClick={() => addToCart()}
+            >
               加入購物車
             </Button>
           </div>

@@ -1,0 +1,41 @@
+@import '/src/assets/stylesheet/main.module.scss';
+
+.success {
+  display: flex;
+  flex-direction: row;
+  column-gap: 2rem;
+
+  .info {
+    width: 60%;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1rem;
+      font-family: $ff-text;
+    }
+
+    .ftr {
+      padding: 1.5rem 0;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+
+}
+
+@media screen and (max-width: 1200px) {
+  .success {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+
+    .info {
+      width: 100%;
+    }
+  }
+}

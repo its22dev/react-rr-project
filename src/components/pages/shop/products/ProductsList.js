@@ -1,21 +1,35 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import { Pagination } from "antd";
-
 import { ShoppingOutlined, InfoCircleOutlined } from '@ant-design/icons';
+import { Loading } from '../../../elements/Loading';
 import axios from "axios";
 import styles from './ProductsList.module.scss';
 
 const ProductsList = () => {
-  const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
-  const [pagination, setPagination] = useState({});
+  const navigate = useNavigate()
+  const [products, setProducts] = useState([])
+  const [pagination, setPagination] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
+  const { getCart } = useOutletContext()
 
   const getProducts = async (page) => {
+    setIsLoading(true)
     const res = await axios.get(`/v2/api/${process.env.REACT_APP_API_PATH_TEST}/products?page=${page}`)
-    console.log(res.data.products);
-    setProducts(res.data.products);
-    setPagination(res.data.pagination);
+    // console.log(res.data.products);
+    setProducts(res.data.products)
+    setPagination(res.data.pagination)
+    setIsLoading(false)
+  }
+  const addToCart = async (id) => {
+    const data = { product_id: id, qty: 1 }
+    try {
+      const res = await axios.post(`/v2/api/${process.env.REACT_APP_API_PATH_TEST}/cart`, { data: data })
+      // console.log(res)
+      getCart()
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
@@ -24,6 +38,7 @@ const ProductsList = () => {
 
   return (<>
     <div className={styles.products}>
+      <Loading isLoading={isLoading} />
       {products.map((prdct) => {
         return (
           <div className={styles.item} key={prdct.id}>
@@ -37,7 +52,7 @@ const ProductsList = () => {
             <div className={styles.price}><span>${prdct.price}</span></div>
             <div className={styles.link}>
               <div className={styles.cart}>
-                <ShoppingOutlined onClick={() => navigate(`${prdct.id}`)} />
+                <ShoppingOutlined onClick={() => addToCart(prdct.id)} />
               </div>
               <div className={styles.info}>
                 <InfoCircleOutlined onClick={() => navigate(`${prdct.id}`)} />

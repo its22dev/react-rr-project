@@ -91,7 +91,15 @@ const Login = () => {
               />
             </div>
           </div>
-          <Button type="primary" onClick={onSubmit}>登入</Button>
+          <Button
+            style={{
+              backgroundColor: '#4eb8dd', color: '#fff',
+            }}
+            type="primary"
+            onClick={onSubmit}
+          >
+            登入
+          </Button>
         </div>
       }
       {mode !== 'login' &&

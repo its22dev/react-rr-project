@@ -74,19 +74,23 @@ const Layouts = () => {
     ?.split('=')[1];
   axios.defaults.headers.common['Authorization'] = token;
 
+
   useEffect(() => {
     const checkToken = async () => {
       try {
         await axios.post('/v2/api/user/check')
       } catch (error) {
         console.error(error);
-        if (!error.response.data.success) navigate('../login')
+        if (!error.response.data.success) navigate('/login')
       }
     }
+
     // check token vaildation
-    if (!token) return navigate('../login');
-    checkToken();
-    CheckBreadcrumb();
+    if (!token) {
+      return navigate('/login')
+    }
+    checkToken()
+    CheckBreadcrumb()
   }, [navigate, token])
 
 

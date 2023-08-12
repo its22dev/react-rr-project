@@ -1,0 +1,33 @@
+@import '/src/assets/stylesheet/main.module.scss';
+
+.block {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
+
+  .title,
+  .input {
+    width: 100%;
+    font-family: $ff-text;
+
+    input {
+      @extend %input;
+      padding: 8px 12px;
+      width: 99%;
+    }
+
+    .feedback {
+      color: $mainblue;
+      font-size: 14px;
+      padding-left: 2px;
+    }
+  }
+
+  .title {
+    display: flex;
+    flex-direction: row;
+    column-gap: 8px;
+    align-items: center;
+  }
+}
