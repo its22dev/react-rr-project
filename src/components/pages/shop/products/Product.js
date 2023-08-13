@@ -110,7 +110,7 @@ const Product = () => {
               <div className={styles.title}>
                 <span onClick={() => setOpen1(!open1)} >
                   {!open1 ? <AiOutlineRight /> : <AiOutlineDown />}
-                  產品簡介
+                  商品簡介
                 </span>
               </div>
               {open1 && <div className={styles.content}> {product.description} </div>}

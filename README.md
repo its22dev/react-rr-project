@@ -1,70 +1,94 @@
-# Getting Started with Create React App
+## Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- 網址：https://its22dev.github.io/react-rr-project/
+- 後臺測試用帳號密碼：暫無
 
-## Available Scripts
+## Intro
 
-In the project directory, you can run:
+- 以 [六角學院的 React 實戰影音](https://www.hexschool.com/courses/react.html "六角學院的React 實戰影音") 為基礎所製作的 Side-project
+- 網站前臺提供商品瀏覽、簡易會員、購物車與訂單結帳的簡易購物功能
+- 網站後臺提供賣家編輯訂單、商品、優惠券、文章
 
-### `npm start`
+## Dev Intro
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Front-End Framework : `React`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Front-End Languages : `HTML` `CSS` `JavaScript`
 
-### `npm test`
+- UI Library : `Ant Design`
+- Webpack : `sass` `axios` `react-router-dom` `react-hook-form` `react-icons` `react-loading`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- API : [六角學院](https://www.hexschool.com "六角學院") 提供
 
-### `npm run build`
+## Roadmap
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 前臺
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| 頁面名稱     | 內容                                               |
+| ------------ | -------------------------------------------------- |
+| 首頁         | 網站的主頁面，展示公司的品牌形象、最新產品等資訊   |
+| 關於我們     | 簡單介紹公司相關資訊                               |
+| 商品列表     | 顯示公司的所有商品列表，可以在此將商品加入購物車   |
+| 單一商品頁面 | 顯示商品詳細資訊，包括分類、簡介、說明內容         |
+| 最新消息     | 微型部落格形式，展示最新的新聞和活動資訊           |
+| 單一文章頁面 | 更詳細的最新消息文章                               |
+| 常見問題     | 提供常見問題和解答，幫助用戶解決一些常見問題或疑惑 |
+| 購物車       | 儲存欲購買商品、計算總金額，非會員/未登入可操作    |
+| 訂單         | 提供填入訂單資料，訂單成功提示頁面                 |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 後臺
 
-### `npm run eject`
+| 頁面名稱 | 內容                                                   | 相對應前臺頁面        |
+| -------- | ------------------------------------------------------ | --------------------- |
+| 管理後臺 | 管理員後台的總覽頁面，顯示訂單數量、商品數量等重要指標 |                       |
+| 訂單列表 | 顯示所有訂單，提供新增、編輯或刪除功能                 | 訂單                  |
+| 商品列表 | 顯示所有商品，提供新增、編輯或刪除功能                 | 商品列表+單一商品頁面 |
+| 優惠列表 | 顯示所有促銷代碼，提供新增、編輯或刪除功能             | \*                    |
+| 文章列表 | 顯示所有文章，提供新增、編輯或刪除功能                 | 最新消息+單一文章頁面 |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Install
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### 取得專案
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+git clone git@github.com:its22dev/react-rr-project.git
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### 移動至專案
 
-## Learn More
+```bash
+cd react-rr-project
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### 執行專案
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm run start
+```
 
-### Code Splitting
+### 開啟專案
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+在瀏覽器網址列輸入以下即可看到畫面（默認 port:3000）
 
-### Analyzing the Bundle Size
+```bash
+http://localhost:3000/
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Propspect
 
-### Making a Progressive Web App
+- 專案基本簡易購物功能已經完成
+- 未來可能開發：
+  - 優惠（促銷代碼）：後臺已有編輯功能，前開發結帳時使用優惠功能
+  - 會員註冊/登入：開放註冊，以及開放六角學員以外者登入
+  - 會員中心：提供註冊會員編輯會員資訊，瀏覽訂單和訂單狀態
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## History
 
-### Advanced Configuration
+- v1.0.0 `2023 JUN 01` : 包含專案本體
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Contact
 
-### Deployment
+你可以透過以下方式與我聯絡
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Gmail](mailto:its.22.dev@gmail.com)
+- [Instagram](https://www.instagram.com/itsninichou/)

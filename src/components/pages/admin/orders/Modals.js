@@ -169,7 +169,7 @@ const Modals = ({ mode, setModalShow, trgtOrder, setTrgtOrder, getOrders }) => {
                   width={190}
                   onClick={() => setDetailShow(true)}
                 >
-                  訂單產品內容
+                  訂單商品內容
                 </Button>
               </div>
             </div>
