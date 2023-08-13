@@ -109,7 +109,7 @@ const navs = [
   },
   {
     path: '/products',
-    title: '產品列表',
+    title: '商品列表',
   },
   {
     path: '/articles',
