@@ -24,20 +24,12 @@ const Layouts = () => {
     if (navShow) setNavShow(false)
     else setNavShow(true)
   }
-  const onClick = e => {
-    const { innerText } = e.target;
+  const onClick = (e, item) => {
+    const { innerText } = e.target
+    const { title, path } = item
     switch (innerText) {
-      case '管理首頁':
-        navigate('/admin/')
-        break;
-      case '訂單列表':
-        navigate('/admin/orders')
-        break;
-      case '商品列表':
-        navigate('/admin/products')
-        break;
-      case '優惠列表':
-        navigate('/admin/coupons')
+      case title:
+        navigate(`${path}`)
         break;
     }
     setNavShow(false)
@@ -108,7 +100,7 @@ const Layouts = () => {
             <div className={styles.mbNav}>
               <span className={styles.navClose} onClick={NavToggle}><AiOutlineClose /></span>
               {navs.map((nav =>
-                <span onClick={e => onClick(e)}>{nav.icon}{nav.title}</span>
+                <span onClick={e => onClick(e, nav)} key={nav.title}>{nav.icon}{nav.title}</span>
               ))}
             </div>}
           <div className={styles.header}>
@@ -162,7 +154,7 @@ const navs = [
   {
     path: '/admin',
     icon: <AiOutlineLaptop />,
-    title: '後台首頁',
+    title: '後臺首頁',
   },
   {
     path: '/admin/orders',

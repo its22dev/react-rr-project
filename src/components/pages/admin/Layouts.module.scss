@@ -1,33 +1,5 @@
 @import '/src/assets/stylesheet/main.module.scss';
 
-@keyframes moveIn {
-  0% {
-    transform: translateX(-50px);
-  }
-
-  50% {
-    transform: translateX(-25px);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes sideIn {
-  0% {
-    transform: translateY(-50px);
-  }
-
-  50% {
-    transform: translateY(-25px);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
-}
-
 body {
   margin: 0;
   @extend %scrollbar;
@@ -201,7 +173,7 @@ body {
         top: 0;
         left: 0;
         background-color: rgba(#001528, 0.95);
-        animation: moveIn 0.2s;
+        animation: MobileMenuShowFromLeft 0.2s;
         padding-top: 60px;
         padding-left: 64px;
 
@@ -284,6 +256,7 @@ body {
       .mbNav {
         display: flex;
         flex-direction: column;
+        justify-content: flex-end;
         gap: 16px;
         height: 100%;
         position: fixed;
@@ -293,9 +266,9 @@ body {
         top: 64px;
         left: 0;
         background-color: rgba(#001528, 0.95);
-        animation: sideIn 0.2s;
-        padding-top: 15px;
-        padding-left: 30px;
+        animation: MobileMenuShowFromTop 0.2s;
+        padding-bottom: 32px;
+        padding-left: 32px;
 
         span {
           display: inline-flex;

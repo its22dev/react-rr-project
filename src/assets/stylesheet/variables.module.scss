@@ -89,3 +89,31 @@ sans-serif;
     transform: translateY(0);
   }
 }
+
+@keyframes MobileMenuShowFromLeft {
+  0% {
+    transform: translateX(-50px);
+  }
+
+  50% {
+    transform: translateX(-25px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes MobileMenuShowFromTop {
+  0% {
+    transform: translateY(-50px);
+  }
+
+  50% {
+    transform: translateY(-25px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}

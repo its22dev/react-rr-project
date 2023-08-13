@@ -20,7 +20,7 @@ const Home = () => {
     fetch()
   }, [])
 
-  console.log(products);
+  // console.log(products)
 
   return (<>
     <Loading isLoading={isLoading} />

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, Link, Outlet } from "react-router-dom";
 import { Badge, FloatButton } from 'antd';
-import { AiOutlineShoppingCart, AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineShoppingCart, AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import axios from 'axios';
 import styles from './Shops.module.scss';
 
@@ -11,6 +11,16 @@ const Shops = () => {
   const [cartData, setCartData] = useState({})
   const [isLoading, setIsLoading] = useState(false)
 
+  const LinkTo = (e, item) => {
+    const { innerText } = e.target
+    const { title, path } = item
+    switch (innerText) {
+      case title:
+        navigate(`${path}`)
+        break;
+    }
+    setNavShow(false)
+  }
   const getCart = async () => {
     try {
       setIsLoading(true)
@@ -54,6 +64,15 @@ const Shops = () => {
             >
               <AiOutlineMenu />
             </span>
+            {navShow &&
+              <div className={styles.mbNav}>
+                <span className={styles.navClose} onClick={NavToggle}><AiOutlineClose /></span>
+                {navs.map((nav =>
+                  <span onClick={e => LinkTo(e, nav)} key={nav.title}>{nav.icon}{nav.title}</span>
+                ))}
+              </div>}
+          </ul>
+          <ul>
             <Link className={styles.navLink} to='/carts'>
               <Badge count={cartData?.carts?.length}>
                 <AiOutlineShoppingCart />
